@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Car;
+use App\Models\Category;
+
 use App\Traits\Common;
+
 
 class Carcontroller extends Controller
 {
@@ -26,7 +29,11 @@ class Carcontroller extends Controller
      */
     public function create()
     {
-        return view('addCar');
+        //return view('addCar');
+        //session10
+       $categories=Category::get();
+       return view('addCar', compact('categories'));
+
     }
 
     /**
@@ -70,11 +77,12 @@ class Carcontroller extends Controller
             // 'description.required'=> 'should be text',
             // ];
             $messages = $this->messages();
-        //session7
+        //session7,session10
         $data = $request ->validate ([
             'title'=>'required|string|max:50',
             'description'=>'required|string',
             'image' => 'required|mimes:png,jpg,jpeg|max:2048',
+            'category_id' =>'required|string',
 
         ], $messages);
         $fileName = $this->uploadFile($request->image, 'assets/images');
@@ -100,8 +108,13 @@ class Carcontroller extends Controller
      */
     public function edit(string $id)
     {
-        $car=Car::findOrFail($id);
-        return view('updatecar', compact('car'));
+        //$car=Car::findOrFail($id);
+        //return view('updatecar', compact('car'));
+
+        //session10
+        $car = Car::findOrFail($id);
+        $categories = Category::get();
+        return view('updateCar', compact('car','categories'));
     }
 
     /**
@@ -142,6 +155,7 @@ class Carcontroller extends Controller
              'title'=>'required|string|max:50',
              'description'=> 'required|string',
              'image' => 'sometimes|mimes:png,jpg,jpeg|max:2048',
+             'category_id'=>'required',
             ], $messages);
 
             if($request->hasFile('image')){

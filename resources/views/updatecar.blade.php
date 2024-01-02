@@ -32,6 +32,18 @@
         {{ $message }}
       @enderror
     </div>
+
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select name="category_id" id="">
+        @foreach($categories as $category)
+        <option value="{{ $category->id }}"{{ $car->category_id == $category->id ? 'selected' : '' }}>{{ $category->cat_name }}</option>
+        @endforeach
+      </select>
+      @error('category_id')
+        {{ $message }}
+      @enderror
+    </div>
     
     <!--{{($car->published)?"checked":""}} مممكن بدل السطرين -->
     <!-- @checked($car->published) -->
