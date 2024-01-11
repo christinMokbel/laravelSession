@@ -70,7 +70,7 @@ Route::get('control',[Examplecontroller::class,'show']);
 
 //session4
 // Route::get('storeCar',[Carcontroller::class,'store']);
-Route::get('createCar',[Carcontroller::class,'create'])->name ('createCar');
+Route::get('createCar',[Carcontroller::class,'create'])->middleware('verified')->name ('createCar');
 Route::post('storeCar',[Carcontroller::class,'store'])->name ('storeCar');
 Route::get('cars',[Carcontroller::class,'index']);
 
@@ -110,3 +110,9 @@ Route::get('image', function () {
 });
 Route::post('imageUpload',[Examplecontroller::class,'upload'])->name('imageUpload');
 
+//session11
+// Auth::routes();
+Auth::routes(['verify'=>true]);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//session12
+Route::get('test20',[Examplecontroller::class,'createSession']);

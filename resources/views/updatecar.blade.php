@@ -37,12 +37,12 @@
       <label for="category">Category:</label>
       <select name="category_id" id="">
         @foreach($categories as $category)
+        <!--@selected($category->cat_name == $car->category['cat_name'])حل اخر -->
+        <!--@selected($category->id == $car->category_id)هذه افضل-->
         <option value="{{ $category->id }}"{{ $car->category_id == $category->id ? 'selected' : '' }}>{{ $category->cat_name }}</option>
         @endforeach
       </select>
-      @error('category_id')
-        {{ $message }}
-      @enderror
+      
     </div>
     
     <!--{{($car->published)?"checked":""}} مممكن بدل السطرين -->

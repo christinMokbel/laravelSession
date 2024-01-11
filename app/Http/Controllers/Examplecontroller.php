@@ -18,5 +18,10 @@ class Examplecontroller extends Controller
         return 'Uploaded';
     }
 
+    public function createSession(){
+        session()->put('test', 'First Laravel session');
+        session()->forget('test');
+        return "session created".session('test');
+    }
 
 }
