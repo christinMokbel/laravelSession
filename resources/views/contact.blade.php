@@ -36,8 +36,9 @@
 								<h2>Contact With Us</h2>
 								<p>If you have any questions please fell free to contact with us.</p>
 								<!-- Form -->
-								<form class="form" method="post" action="mail/mail.php">
-									<div class="row">
+								<form class="form" method="post" action="{{url('contactmail')}}"> <!--"mail/mail.php"-->
+								  @csrf
+								    <div class="row">
 										<div class="col-lg-6">
 											<div class="form-group">
 												<input type="text" name="name" placeholder="Name" required="">
@@ -50,7 +51,7 @@
 										</div>
 										<div class="col-lg-6">
 											<div class="form-group">
-												<input type="text" name="phone" placeholder="Phone" required="">
+												<input type="text" name="mobile" placeholder="Phone" required="">
 											</div>
 										</div>
 										<div class="col-lg-6">

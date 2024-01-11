@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Examplecontroller;
 use App\Http\Controllers\Carcontroller;
+use App\Http\Controllers\Contactcontroller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -116,3 +118,5 @@ Auth::routes(['verify'=>true]);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //session12
 Route::get('test20',[Examplecontroller::class,'createSession']);
+//task12
+Route::post('contactmail',[Contactcontroller::class,'contactmail']);
