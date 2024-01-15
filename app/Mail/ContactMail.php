@@ -7,6 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Address;
+
 use Illuminate\Queue\SerializesModels;
 
 class ContactMail extends Mailable
@@ -32,7 +34,9 @@ class ContactMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contact Mail',
+            subject: $this->user['subject'],
+            from:new Address($this->user['email'],$this->user['name']),
+
         );
     }
 
@@ -43,6 +47,11 @@ class ContactMail extends Mailable
     {
         return new Content(
             view: 'view.name',
+            //ممكن دا بدال دالة الbuildواشيل الview
+            //markdown: 'mails.contactUs',
+            //with:[
+             //   $this->data,
+            //]
         );
     }
 
