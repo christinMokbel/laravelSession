@@ -72,6 +72,11 @@ Route::get('control',[Examplecontroller::class,'show']);
 
 //session4
 // Route::get('storeCar',[Carcontroller::class,'store']);
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
 Route::get('createCar',[Carcontroller::class,'create'])->middleware('verified')->name ('createCar');
 Route::post('storeCar',[Carcontroller::class,'store'])->name ('storeCar');
 Route::get('cars',[Carcontroller::class,'index']);
@@ -87,7 +92,7 @@ Route::get('deleteCar/{id}',[Carcontroller::class,'destroy']);
 Route::get('trashed',[Carcontroller::class,'trashed'])->name('trashed');
 Route::get('forceDelete/{id}',[Carcontroller::class,'forceDelete']);
 Route::get('restoreCar/{id}',[Carcontroller::class,'restore']);
-
+});
 //session7
 Route::get('test', function () {
     return view('test');
